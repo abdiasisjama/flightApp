@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %} Add flight data {% endblock %}
+
+{% block content %}
+    <h1 class="mb-6 text-3xl">Create new flight</h1>
+
+    <form action="." method="post">
+        {% csrf_token %}
+
+        <div class="space-y-4">
+            {{flight.as_p}}
+        </div>
+
+        {% if flight.errors or flight.non_field_errors %}
+            <div class="mb-3 p-6 bg-red-100 rounded.xl">
+                {% for field in flight %}
+                    {{ field.errors }}
+                {% endfor %}
+
+                {{flight.non_field_errors}}
+            </div>
+        {% endif %}
+
+        <button class="py-4 px-6 text-lg bg-teal-500 rounded-xl m-2">Create new flight</button>
+
+    </form>
+
+
+{% endblock %}

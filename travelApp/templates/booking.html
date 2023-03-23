@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %} Add booking data {% endblock %}
+
+{% block content %}
+    <h1 class="mb-6 text-3xl">Create new booking</h1>
+
+    <form action="." method="post">
+        {% csrf_token %}
+
+        <div class="space-y-4">
+            {{booking.as_p}}
+        </div>
+
+        {% if booking.errors or booking.non_field_errors %}
+            <div class="mb-3 p-6 bg-red-100 rounded.xl">
+                {% for field in booking %}
+                    {{ field.errors }}
+                {% endfor %}
+
+                {{booking.non_field_errors}}
+            </div>
+        {% endif %}
+
+        <button class="py-4 px-6 text-lg bg-teal-500 rounded-xl m-2">Create flight booking</button>
+
+    </form>
+    <br>
+    <hr>
+    <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+        <h2 class="mb-12 text-2xl text-center"> {{ bookings.count }} <em>Total</em> tickets booked</h2>
+
+        <table class="table-auto w-full text-center">
+            <thead>
+              <tr>
+                <th scope="col">Passenger</th>
+                <th scope="col">Flight</th>
+                <th>Ticket Number</th>
+                <th>Confirmation Number</th>
+                <th>Issue Date</th>
+                <th>Price</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody class="gap-y-4">
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{booking.passenger }}</td>
+                    <td>{{ booking.flight }}</td>
+                    <td>{{ booking.ticket_number}}</td>
+                    <td>{{booking.confirmation_number}}</td>
+                    <td>{{booking.issue_date}}</td>
+                    <td>{{booking.price}}</td>
+                    <td><a href="{% url 'edit2' booking.id %}" class="gap-y-6 px-2 text-lg font-semibold bg-red-400 text-white rounded-xl">Edit</a></td>
+                    <td><a href="{% url 'ticket' booking.passenger.id %}" class="gap-y-6 px-3 text-lg font-semibold bg-violet-400 text-white rounded-xl">View ticket</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+
+
+{% endblock %}

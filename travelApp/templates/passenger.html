@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %} Add passenger data {% endblock %}
+
+{% block content %}
+    <h1 class="mb-6 text-3xl">Create new passenger</h1>
+
+    <form action="." method="post"">
+        {% csrf_token %}
+
+        <div class="space-y-4">
+            {{passenger.as_p}}
+        </div>
+
+        {% if passenger.errors or passenger.non_field_errors %}
+            <div class="mb-3 p-6 bg-red-100 rounded.xl">
+                {% for field in passenger %}
+                    {{ field.errors }}
+                {% endfor %}
+
+                {{passenger.non_field_errors}}
+            </div>
+        {% endif %}
+
+        <button class="py-4 px-6 text-lg bg-teal-500 rounded-xl m-2">Create passenger</button>
+
+    </form>
+    <hr>
+    <br>
+
+    <div>
+        <form action="" method="get">
+            <input type="text" name="query" value="{{query}}" class="w-1/4 px-6 py-2 rounded-xl border-4" placeholder="Find passenger first name (e.g Ahmed)">
+
+            <button class="mt-2 ml-2 px-8 py-2 text-lg text-white bg-blue-500 rounded-xl">Search</button>
+        </form>
+    </div>
+
+    <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+        <h2 class="mb-12 text-2xl text-center"> {{ passengers.count }} <em>Total</em> passengers</h2>
+
+        <table class="table-auto min-w-full text-center">
+            <thead>
+              <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Middle Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Passport Number</th>
+                <th scope="col">Nationality</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody class="gap-y-4">
+                {% for passenger in passengers %}
+                <tr>
+                    <td>{{passenger.first_name }}</td>
+                    <td>{{ passenger.middle_name }}</td>
+                    <td>{{ passenger.last_name }}</td>
+                    <td>{{ passenger.passport_number }}</td>
+                    <td> {{ passenger.nationality }}</td>
+                    <td> {{ passenger.phone}}</td>
+                    <td>{{ passenger.email}}</td>
+                    <td>
+                        <a href="{% url 'edit' passenger.id %}" class="gap-y-6 px-2 text-lg font-semibold bg-red-400 text-white rounded-xl">Edit</a>
+                        <a href="{% url 'delete' passenger.id %}" class="gap-y-6 px-2 text-lg font-semibold bg-red-400 text-white rounded-xl">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+
+
+
+{% endblock %}

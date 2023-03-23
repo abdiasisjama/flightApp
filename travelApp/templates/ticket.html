@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated ticket</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="px-5">
+    <br>
+    <h1 class="mb-6 text-3xl">Passenger Details</h1>
+    <table class="table-auto w-full text-center">
+        <thead>
+            <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last name</th>
+                <th scope="col">Passport Number</th>
+                <th scope="col">Nationality</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{passenger.first_name}}</td>
+                <td>{{passenger.last_name}}</td>
+                <td>{{passenger.passport_number}}</td>
+                <td>{{passenger.nationality}}</td>
+                <td>{{passenger.phone}}</td>
+                <td>{{passenger.email}}</td>
+            </tr>
+
+        </tbody>
+    </table>
+    <br>
+    <hr>
+    <h1 class="mb-6 text-3xl">Flight Details</h1>
+    <table class="table-auto w-full text-center">
+        <thead>
+            <tr>
+                <th scope="col">Flight Number</th>
+                <th scope="col">Checking Time</th>
+                <th scope="col">Departure Time</th>
+                <th scope="col">Arrival Time</th>
+                <th scope="col">Flight</th>
+                <th scope="col">Flight Class</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{flight.flight_number}}</td>
+                <td>{{flight.checking_time}}</td>
+                <td>{{flight.departure_time}}</td>
+                <td>{{flight.arrival_time}}</td>
+                <td>{{flight.airport}}</td>
+                <td>{{flight.flight_class}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <hr>
+    <h1 class="mb-6 text-3xl">Booking Details</h1>
+    <table class="table-auto w-full text-center">
+        <thead>
+            <tr>
+                <th scope="col">Ticket Number</th>
+                <th scope="col">Confirmation Number</th>
+                <th scope="col">Issue Date</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{booking.ticket_number}}</td>
+                <td>{{booking.confirmation_number}}</td>
+                <td>{{booking.issue_date}}</td>
+                <td>{{booking.price}}</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

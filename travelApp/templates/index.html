@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %} Welcome {% endblock %}
+
+{% block content %}
+    <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+        <h2 class="mb-12 text-2xl text-center"> {{ flight.count }} <em>Total</em> flights</h2>
+
+        <table class="table-auto w-full text-center">
+            <thead>
+              <tr>
+                <th scope="col">Flight Number</th>
+                <th scope="col">Checking Time</th>
+                <th scope="col">Departure Time</th>
+                <th scope="col">Arrival Time</th>
+                <th scope="col">Duration In Minutes</th>
+                <th scope="col">Flight Class</th>
+                <th scope="col">Airport</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for flight in flight %}
+                <tr>
+                    <td>{{flight.flight_number }}</td>
+                    <td>{{ flight.checking_time }}</td>
+                    <td>{{ flight.departure_time }}</td>
+                    <td>{{ flight.arrival_time }}</td>
+                    <td> {{ flight.duration_in_min }}</td>
+                    <td> {{ flight.flight_class}}</td>
+                    <td>{{ flight.airport}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+{% endblock %}
